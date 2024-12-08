@@ -1,3 +1,4 @@
+import 'package:chameleon/views/menu.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,7 +13,7 @@ class ChameleonApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chameleon',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
       home: const Main(),
@@ -35,11 +36,14 @@ class _MainState extends State<Main> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chameleon'),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
-      body: switch (_view) {
-        'menu' => null,
-        _ => null,
-      },
+      body: Center(
+        child: switch (_view) {
+          'menu' => const MenuView(),
+          _ => null,
+        },
+      ),
     );
   }
 }
