@@ -31,6 +31,12 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   String _view = 'menu';
 
+  _setViewCallback(String view) {
+    setState(() {
+      _view = view;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,8 +46,8 @@ class _MainState extends State<Main> {
       ),
       body: Center(
         child: switch (_view) {
-          'menu' => const MenuView(),
-          _ => null,
+          'menu' => MenuView(setViewCallback: _setViewCallback),
+          _ => MenuView(setViewCallback: _setViewCallback),
         },
       ),
     );
