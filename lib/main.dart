@@ -1,6 +1,8 @@
 import 'package:chameleon/views/menu.dart';
 import 'package:flutter/material.dart';
 
+final darkNotifier = ValueNotifier(false);
+
 void main() {
   runApp(const ChameleonApp());
 }
@@ -10,13 +12,22 @@ class ChameleonApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Chameleon',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        useMaterial3: true,
+    return ValueListenableBuilder(
+      valueListenable: darkNotifier,
+      builder: (context, isDark, child) => MaterialApp(
+        title: 'Chameleon',
+        themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+        theme: ThemeData(
+          colorSchemeSeed: Colors.green,
+          useMaterial3: true,
+        ),
+        darkTheme: ThemeData(
+          colorSchemeSeed: Colors.green,
+          useMaterial3: true,
+          brightness: Brightness.dark,
+        ),
+        home: const Main(),
       ),
-      home: const Main(),
     );
   }
 }
@@ -42,6 +53,12 @@ class _MainState extends State<Main> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chameleon'),
+        actions: [
+          IconButton(
+            icon: Icon(darkNotifier.value ? Icons.light_mode : Icons.dark_mode),
+            onPressed: () => darkNotifier.value = !darkNotifier.value,
+          ),
+        ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
