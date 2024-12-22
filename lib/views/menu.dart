@@ -1,35 +1,32 @@
+import 'package:chameleon/controllers/game_controller.dart';
+import 'package:chameleon/main.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-const int maxPlayers = 10;
-const int minPlayers = 3;
-
-class MenuView extends StatefulWidget {
+class MenuView extends HookConsumerWidget {
   final void Function(String) setViewCallback;
 
   const MenuView({super.key, required this.setViewCallback});
 
   @override
-  State<MenuView> createState() => _MenuViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final gameState = ref.watch(gameControllerProvider);
+    final numPlayers = gameState.numPlayers;
 
-class _MenuViewState extends State<MenuView> {
-  int _numPlayers = 6;
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Text('Play Chameleon', style: TextStyle(fontSize: 24)),
+          const Text('Play Chameleon!', style: TextStyle(fontSize: 24)),
           const SizedBox(height: 8),
           NumberPicker(
             minValue: minPlayers,
             maxValue: maxPlayers,
-            value: _numPlayers,
-            onChanged: (value) => setState(() => _numPlayers = value),
+            value: numPlayers,
+            onChanged: (value) =>
+                ref.read(gameControllerProvider.notifier).setNumPlayers(value),
             axis: Axis.horizontal,
             itemHeight: 100,
             decoration: BoxDecoration(
@@ -42,16 +39,16 @@ class _MenuViewState extends State<MenuView> {
             children: [
               IconButton(
                 icon: const Icon(Icons.remove),
-                onPressed: () => setState(() {
-                  _numPlayers = (_numPlayers - 1).clamp(minPlayers, maxPlayers);
-                }),
+                onPressed: () => ref
+                    .read(gameControllerProvider.notifier)
+                    .setNumPlayers(numPlayers - 1),
               ),
-              Text('Players: $_numPlayers'),
+              Text('Players: $numPlayers'),
               IconButton(
                 icon: const Icon(Icons.add),
-                onPressed: () => setState(() {
-                  _numPlayers = (_numPlayers + 1).clamp(minPlayers, maxPlayers);
-                }),
+                onPressed: () => ref
+                    .read(gameControllerProvider.notifier)
+                    .setNumPlayers(numPlayers + 1),
               ),
             ].expand((x) => [const SizedBox(width: 16), x]).skip(1).toList(),
           ),
@@ -61,7 +58,7 @@ class _MenuViewState extends State<MenuView> {
         label: const Text('Play!'),
         icon: const Icon(Icons.sports_esports),
         onPressed: () {
-          widget.setViewCallback('game');
+          setViewCallback('play');
         },
       ),
     );

@@ -1,10 +1,15 @@
+import 'package:chameleon/controllers/game_controller.dart';
+import 'package:chameleon/models/game_state.dart';
 import 'package:chameleon/views/menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final darkNotifier = ValueNotifier(false);
+final gameControllerProvider =
+    NotifierProvider<GameController, GameState>(GameController.new);
 
 void main() {
-  runApp(const ChameleonApp());
+  runApp(const ProviderScope(child: ChameleonApp()));
 }
 
 class ChameleonApp extends StatelessWidget {
