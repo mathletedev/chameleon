@@ -22,4 +22,10 @@ class GameController extends Notifier<GameState> {
       currPlayer: 0,
     );
   }
+
+  bool nextPlayer() {
+    state = state.copyWith(currPlayer: (state.currPlayer + 1));
+
+    return state.currPlayer < state.numPlayers;
+  }
 }

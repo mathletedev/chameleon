@@ -1,6 +1,7 @@
 import 'package:chameleon/controllers/game_controller.dart';
 import 'package:chameleon/models/game_state.dart';
 import 'package:chameleon/views/menu.dart';
+import 'package:chameleon/views/play.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -69,6 +70,7 @@ class _MainState extends State<Main> {
       body: Center(
         child: switch (_view) {
           'menu' => MenuView(setViewCallback: _setViewCallback),
+          'play' => PlayView(setViewCallback: _setViewCallback),
           _ => MenuView(setViewCallback: _setViewCallback),
         },
       ),
