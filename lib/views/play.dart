@@ -34,11 +34,14 @@ class _PlayViewState extends State<PlayView> {
             children: [
               Text(
                 'Player ${gameState.currPlayer + 1}',
-                style: const TextStyle(fontSize: 30),
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
               _reveal && chameleon
                   ? const GradientText(
-                      'You are the Chameleon',
+                      'You are the Chameleon!',
                       style: TextStyle(fontSize: 24),
                       gradient: LinearGradient(
                         colors: [
@@ -60,12 +63,40 @@ class _PlayViewState extends State<PlayView> {
                       ),
                     )
                   : Text(
-                      _reveal ? 'Regular' : '???',
+                      _reveal ? gameState.secretWord : '???',
                       style: const TextStyle(fontSize: 24),
                     ),
-              SizedBox(
-                height: 100,
+              const Divider(height: 32, indent: 32, endIndent: 32),
+              Text(
+                'Category: ${gameState.category}',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Theme.of(context).colorScheme.tertiary,
+                ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 16,
+                ),
+                child: GridView.count(
+                  crossAxisCount: 4,
+                  childAspectRatio: 2,
+                  shrinkWrap: true,
+                  children: List.generate(
+                    16,
+                    (index) => Container(
+                      color: (index ~/ 4 + index % 4) % 2 == 0
+                          ? Theme.of(context).colorScheme.inversePrimary
+                          : Theme.of(context).colorScheme.onInverseSurface,
+                      child: Center(
+                        child: Text(gameState.words[index]),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
               GestureDetector(
                 onTapDown: (_) => setState(() {
                   _reveal = true;

@@ -58,7 +58,7 @@ class MenuView extends HookConsumerWidget {
         label: const Text('Play!'),
         icon: const Icon(Icons.sports_esports),
         onPressed: () {
-          ref.read(gameControllerProvider.notifier).startGame();
+          ref.read(gameControllerProvider.notifier).startGame('Inventions');
 
           setViewCallback('play');
         },
