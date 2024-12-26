@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
 import 'package:chameleon/models/card.dart';
 import 'package:chameleon/models/game_state.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final gameControllerProvider =
@@ -16,7 +16,7 @@ class GameController extends Notifier<GameState> {
   late List<Card> _cards;
 
   GameController() {
-    File('assets/cards.json').readAsString().then((contents) {
+    rootBundle.loadString('assets/cards.json').then((contents) {
       _cards =
           (jsonDecode(contents) as List).map((x) => Card.fromJson(x)).toList();
 

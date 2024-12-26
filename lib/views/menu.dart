@@ -93,18 +93,19 @@ class MenuView extends HookConsumerWidget {
             ),
           if (gameState.words.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
               child: CardWidget(
                 cellGenerator: (index) => Center(
                   child: Text(
                     gameState.words[index],
                     textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 9),
                   ),
                 ),
               ),
             ),
           const SizedBox(height: 32),
-        ].expand((x) => [const SizedBox(height: 16), x]).toList(),
+        ].expand((x) => [const SizedBox(height: 8), x]).toList(),
       ),
       floatingActionButton: FloatingActionButton.extended(
         label: const Text('Play!'),

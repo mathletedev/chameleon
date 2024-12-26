@@ -19,23 +19,27 @@ class EndView extends HookConsumerWidget {
 
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'The ${chameleonWon ? "Chameleon" : "Players"} won!',
-              style: TextStyle(
-                fontSize: 36,
-                color: Theme.of(context).colorScheme.primary,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'The ${chameleonWon ? "Chameleon" : "Players"} won!',
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Theme.of(context).colorScheme.primary,
+                ),
               ),
-            ),
-            Text(
-              'The secret word was: ${gameState.secretWord}',
-              style: TextStyle(
-                fontSize: 24,
+              Text(
+                'The secret word was: ${gameState.secretWord}',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(

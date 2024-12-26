@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CardWidget extends StatelessWidget {
+  final double aspectRatio;
   final Widget Function(int) cellGenerator;
 
-  const CardWidget({super.key, required this.cellGenerator});
+  const CardWidget(
+      {super.key, this.aspectRatio = 2, required this.cellGenerator});
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 4,
-      childAspectRatio: 2,
+      childAspectRatio: aspectRatio,
       shrinkWrap: true,
       children: List.generate(
         16,

@@ -68,7 +68,7 @@ class _PlayViewState extends State<PlayView> {
                       _reveal ? gameState.secretWord : '???',
                       style: const TextStyle(fontSize: 24),
                     ),
-              const Divider(height: 32, indent: 32, endIndent: 32),
+              const Divider(height: 32, indent: 16, endIndent: 16),
               Text(
                 'Category: ${gameState.category}',
                 style: TextStyle(
@@ -78,7 +78,7 @@ class _PlayViewState extends State<PlayView> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 32,
+                  horizontal: 16,
                   vertical: 16,
                 ),
                 child: CardWidget(
@@ -86,6 +86,7 @@ class _PlayViewState extends State<PlayView> {
                     child: Text(
                       gameState.words[index],
                       textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 10),
                     ),
                   ),
                 ),

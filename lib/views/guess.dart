@@ -23,32 +23,36 @@ class GuessView extends HookConsumerWidget {
             color: Theme.of(context).colorScheme.primary,
           ),
         ),
+        const SizedBox(height: 16),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32),
-          child: CardWidget(cellGenerator: (index) {
-            var word = gameState.words[index];
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: CardWidget(
+              aspectRatio: 1.5,
+              cellGenerator: (index) {
+                var word = gameState.words[index];
 
-            return TextButton(
-              onPressed: () {
-                setViewCallback(
-                  word == gameState.secretWord
-                      ? 'win_chameleon'
-                      : 'win_players',
+                return TextButton(
+                  onPressed: () {
+                    setViewCallback(
+                      word == gameState.secretWord
+                          ? 'win_chameleon'
+                          : 'win_players',
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.all(0),
+                    shape: const ContinuousRectangleBorder(),
+                  ),
+                  child: Text(
+                    word,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
+                  ),
                 );
-              },
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.all(0),
-                shape: const ContinuousRectangleBorder(),
-              ),
-              child: Text(
-                word,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.onSurface,
-                ),
-              ),
-            );
-          }),
+              }),
         )
       ],
     );

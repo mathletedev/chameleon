@@ -46,6 +46,7 @@ pkgs.mkShell rec {
     # https://nixos.wiki/wiki/Flutter
     flutter
     android.androidsdk
+    android.platform-tools
     jdk17
   ];
 
