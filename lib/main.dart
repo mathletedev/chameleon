@@ -1,13 +1,12 @@
-import 'package:chameleon/controllers/game_controller.dart';
-import 'package:chameleon/models/game_state.dart';
+import 'package:chameleon/views/debate.dart';
+import 'package:chameleon/views/end.dart';
 import 'package:chameleon/views/menu.dart';
 import 'package:chameleon/views/play.dart';
+import 'package:chameleon/views/unmask.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final darkNotifier = ValueNotifier(false);
-final gameControllerProvider =
-    NotifierProvider<GameController, GameState>(GameController.new);
 
 void main() {
   runApp(const ProviderScope(child: ChameleonApp()));
@@ -71,6 +70,10 @@ class _MainState extends State<Main> {
         child: switch (_view) {
           'menu' => MenuView(setViewCallback: _setViewCallback),
           'play' => PlayView(setViewCallback: _setViewCallback),
+          'debate' => DebateView(setViewCallback: _setViewCallback),
+          'unmask' => UnmaskView(setViewCallback: _setViewCallback),
+          'win_chameleon' =>
+            EndView(setViewCallback: _setViewCallback, chameleonWon: true),
           _ => MenuView(setViewCallback: _setViewCallback),
         },
       ),

@@ -6,6 +6,9 @@ import 'package:chameleon/models/card.dart';
 import 'package:chameleon/models/game_state.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final gameControllerProvider =
+    NotifierProvider<GameController, GameState>(GameController.new);
+
 const int maxPlayers = 10;
 const int minPlayers = 3;
 

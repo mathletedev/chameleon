@@ -1,11 +1,12 @@
-import 'package:chameleon/main.dart';
+import 'package:chameleon/common/types.dart';
+import 'package:chameleon/controllers/game_controller.dart';
 import 'package:chameleon/widgets/card.dart';
 import 'package:chameleon/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PlayView extends StatefulWidget {
-  final void Function(String) setViewCallback;
+  final SetViewCallback setViewCallback;
 
   const PlayView({super.key, required this.setViewCallback});
 
@@ -125,7 +126,7 @@ class _PlayViewState extends State<PlayView> {
                   var end =
                       !ref.read(gameControllerProvider.notifier).nextPlayer();
                   if (end) {
-                    widget.setViewCallback('menu');
+                    widget.setViewCallback('debate');
                   }
                 },
               )
