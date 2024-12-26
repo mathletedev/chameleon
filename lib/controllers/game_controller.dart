@@ -19,6 +19,8 @@ class GameController extends Notifier<GameState> {
 
       state =
           state.copyWith(categories: _cards.map((x) => x.category).toList());
+
+      setCategory('Inventions');
     });
   }
 
@@ -32,19 +34,19 @@ class GameController extends Notifier<GameState> {
   }
 
   void setCategory(String category) {
-    state = state.copyWith(category: category);
+    state = state.copyWith(
+      category: category,
+      words: _cards.firstWhere((element) => element.category == category).words,
+    );
+
+    assert(state.words.length == 16);
   }
 
   void startGame() {
-    var words = _cards
-        .firstWhere((element) => element.category == state.category)
-        .words;
-
     state = state.copyWith(
       chameleon: Random().nextInt(state.numPlayers),
       currPlayer: 0,
-      words: words,
-      secretWord: words[Random().nextInt(words.length)],
+      secretWord: state.words[Random().nextInt(state.words.length)],
     );
   }
 

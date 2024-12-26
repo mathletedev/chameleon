@@ -1,4 +1,5 @@
 import 'package:chameleon/main.dart';
+import 'package:chameleon/widgets/card.dart';
 import 'package:chameleon/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -79,23 +80,11 @@ class _PlayViewState extends State<PlayView> {
                   horizontal: 32,
                   vertical: 16,
                 ),
-                child: GridView.count(
-                  crossAxisCount: 4,
-                  childAspectRatio: 2,
-                  shrinkWrap: true,
-                  children: List.generate(
-                    16,
-                    (index) => Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      color: (index ~/ 4 + index % 4) % 2 == 0
-                          ? Theme.of(context).colorScheme.inversePrimary
-                          : Theme.of(context).colorScheme.onInverseSurface,
-                      child: Center(
-                        child: Text(
-                          gameState.words[index],
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
+                child: CardWidget(
+                  cellGenerator: (index) => Center(
+                    child: Text(
+                      gameState.words[index],
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),

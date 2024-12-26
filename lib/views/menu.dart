@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:chameleon/controllers/game_controller.dart';
 import 'package:chameleon/main.dart';
+import 'package:chameleon/widgets/card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:numberpicker/numberpicker.dart';
@@ -89,7 +90,20 @@ class MenuView extends HookConsumerWidget {
                     .read(gameControllerProvider.notifier)
                     .setCategory(category ?? 'Inventions');
               },
-            )
+            ),
+          if (gameState.words.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 8),
+              child: CardWidget(
+                cellGenerator: (index) => Center(
+                  child: Text(
+                    gameState.words[index],
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+            ),
+          const SizedBox(height: 32),
         ].expand((x) => [const SizedBox(height: 16), x]).toList(),
       ),
       floatingActionButton: FloatingActionButton.extended(
