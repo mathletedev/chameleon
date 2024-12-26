@@ -1,5 +1,6 @@
 import 'package:chameleon/views/debate.dart';
 import 'package:chameleon/views/end.dart';
+import 'package:chameleon/views/guess.dart';
 import 'package:chameleon/views/menu.dart';
 import 'package:chameleon/views/play.dart';
 import 'package:chameleon/views/unmask.dart';
@@ -72,8 +73,11 @@ class _MainState extends State<Main> {
           'play' => PlayView(setViewCallback: _setViewCallback),
           'debate' => DebateView(setViewCallback: _setViewCallback),
           'unmask' => UnmaskView(setViewCallback: _setViewCallback),
+          'guess' => GuessView(setViewCallback: _setViewCallback),
           'win_chameleon' =>
             EndView(setViewCallback: _setViewCallback, chameleonWon: true),
+          'win_players' =>
+            EndView(setViewCallback: _setViewCallback, chameleonWon: false),
           _ => MenuView(setViewCallback: _setViewCallback),
         },
       ),

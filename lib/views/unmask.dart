@@ -49,7 +49,9 @@ class UnmaskView extends HookConsumerWidget {
             ),
             const SizedBox(width: 16),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                setViewCallback('guess');
+              },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(0, 50),
               ),
