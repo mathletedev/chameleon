@@ -86,11 +86,15 @@ class _PlayViewState extends State<PlayView> {
                   children: List.generate(
                     16,
                     (index) => Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
                       color: (index ~/ 4 + index % 4) % 2 == 0
                           ? Theme.of(context).colorScheme.inversePrimary
                           : Theme.of(context).colorScheme.onInverseSurface,
                       child: Center(
-                        child: Text(gameState.words[index]),
+                        child: Text(
+                          gameState.words[index],
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),

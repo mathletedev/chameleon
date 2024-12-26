@@ -16,11 +16,14 @@ class GameController extends Notifier<GameState> {
     File('assets/cards.json').readAsString().then((contents) {
       _cards =
           (jsonDecode(contents) as List).map((x) => Card.fromJson(x)).toList();
+
+      state =
+          state.copyWith(categories: _cards.map((x) => x.category).toList());
     });
   }
 
   @override
-  GameState build() => GameState(chameleon: -1, numPlayers: 6);
+  GameState build() => GameState();
 
   void setNumPlayers(int numPlayers) {
     state = state.copyWith(
@@ -28,14 +31,18 @@ class GameController extends Notifier<GameState> {
     );
   }
 
-  void startGame(String category) {
-    var words =
-        _cards.firstWhere((element) => element.category == category).words;
+  void setCategory(String category) {
+    state = state.copyWith(category: category);
+  }
+
+  void startGame() {
+    var words = _cards
+        .firstWhere((element) => element.category == state.category)
+        .words;
 
     state = state.copyWith(
       chameleon: Random().nextInt(state.numPlayers),
       currPlayer: 0,
-      category: category,
       words: words,
       secretWord: words[Random().nextInt(words.length)],
     );

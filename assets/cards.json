@@ -19,5 +19,26 @@
       "Camera",
       "Radio"
     ]
+  },
+  {
+    "category": "Fairy Tales",
+    "words": [
+      "Cinderella",
+      "Snow White",
+      "Jack and the Beanstalk",
+      "Hare and the Tortoise",
+      "Snow White",
+      "Rapunzel",
+      "Aladdin",
+      "Princess and the Pea",
+      "Peter Pan",
+      "Little Red Riding Hood",
+      "Pinocchio",
+      "Beauty and the Beast",
+      "Sleeping Beauty",
+      "Hansel and Gretel",
+      "Gingerbread Man",
+      "Three Little Pigs"
+    ]
   }
 ]
